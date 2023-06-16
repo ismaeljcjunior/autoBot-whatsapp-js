@@ -3,17 +3,17 @@ import { menu } from '../menu.js'
 import { storage } from '../storage.js'
 import { STAGES } from './index.js'
 
-export  stageTwo = {
+export const stageTwo = {
   async exec(params) {
-     message = params.message.trim()
-     isMsgValid = /[1|2|3|4|5|#|*]/.test(message)
+    const message = params.message.trim()
+    const isMsgValid = /[1|2|3|4|5|#|*]/.test(message)
 
     let msg =
       '❌ *Digite uma opção válida, por favor.* \n⚠️ ```APENAS UMA OPÇÃO POR VEZ``` ⚠️'
 
     if (isMsgValid) {
       if (['#', '*'].includes(message)) {
-         option = options[message]()
+        const option = options[message]()
         msg = option.message
         storage[params.from].stage = option.nextStage
       } else {
@@ -33,9 +33,9 @@ export  stageTwo = {
   },
 }
 
- options = {
+const options = {
   '*': () => {
-     message =
+    const message =
       '🔴 Pedido *CANCELADO* com sucesso. \n\n ```Volte Sempre!```'
 
     return {
@@ -44,7 +44,7 @@ export  stageTwo = {
     }
   },
   '#': () => {
-     message =
+    const message =
       '🗺️ Agora, informe o *ENDEREÇO*. \n ( ```Rua, Número, Bairro``` ) \n\n ' +
       '\n-----------------------------------\n*️⃣ - ```CANCELAR pedido```'
 
